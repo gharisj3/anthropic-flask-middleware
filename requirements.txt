@@ -1,0 +1,8 @@
+flask
+anthropic
+pydantic
+python-dotenv
+tenacity
+pymysql
+DBUtils
+pytest
