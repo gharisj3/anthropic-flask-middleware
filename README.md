@@ -1,5 +1,7 @@
 # anthropic-flask-middleware
 
+**Status: Flask reference service.** API-key checks, structured validation/correction, streaming and optional usage logging are implemented. Tests mock the provider; live Anthropic accuracy, streaming reliability and production deployment have not been established by those tests. Production use needs request-size/rate limits, operational monitoring and deployment controls. Cost logging currently uses fixed example rate parameters, not a current model-price registry; do not treat it as accurate billing.
+
 A small Flask middleware wrapper for building secure, validated Anthropic API endpoints.
 
 This project gives developers a practical starting point for adding Anthropic-backed streaming and structured JSON extraction to a Flask service without hardcoded secrets, paid infrastructure, or live API calls in tests.
@@ -190,7 +192,7 @@ Example response:
 
 ## Error Format
 
-All API errors use this shape:
+Handled API errors use this shape (streaming errors are emitted as SSE payloads):
 
 ```json
 {

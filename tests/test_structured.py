@@ -80,11 +80,15 @@ def test_valid_structured_data_passes_pydantic_validation():
     assert result.tags == ["docs", "flask"]
 
 
-def test_structured_endpoint_uses_mock_and_makes_no_real_anthropic_call(client, monkeypatch):
+def test_structured_endpoint_uses_mock_and_makes_no_real_anthropic_call(
+    client, monkeypatch
+):
     def fail_if_called(*args, **kwargs):
-        raise AssertionError("Real Anthropic client should not be constructed during tests")
+        raise AssertionError(
+            "Real Anthropic client should not be constructed during tests"
+        )
 
-    monkeypatch.setattr("anthropic_service.Anthropic", fail_if_called)
+    monkeypatch.setattr("anthropic_service.anthropic.Anthropic", fail_if_called)
 
     response = client.post(
         "/structured",
